@@ -22,9 +22,9 @@ use \Bitrix\Main\Page\Asset;
  *		array(
  *			// Массив с папками, из которых будем тянуть скрипты и стили.
  *          // вложенные папки не сканируются
- *			'/local/js/', 
+ *			'/local/js/',
  *			'/local/css/'
- *		), 
+ *		),
  *		array(
  *			// Массив с префиксами файлов, исключаемых из автозагрузки.
  *			'main'
@@ -80,7 +80,7 @@ class cnAsset {
 	public static function addAssets($arPath, $excludes, $isD7) {
 		foreach ($arPath as $folder) {
 			// Сканируем папку
-			$f           = scandir($folder);
+			$f = scandir($folder);
 			// Получаем относительный путь
 			$localFolder = str_replace($_SERVER['DOCUMENT_ROOT'], '', $folder);
 			// Пробегаем по массиву файлов
@@ -90,7 +90,7 @@ class cnAsset {
 					// Берём только css и js файлы
 					if (preg_match("/(.*?)\\.(css|js)$/im", $file, $matches)) {
 						// Для localhost добавляем параметр т.к. файлы кешируются браузером
-						$v = (!$isD7) ? fileatime($folder . $file) : 1 ;
+						$v = (!$isD7) ? fileatime($folder . $file) : 1;
 						switch ($matches[2]) {
 							case 'css':
 								// добавляем css-файл
@@ -113,7 +113,7 @@ class cnAsset {
 	 * @param bool   $isD7
 	 * @param string $v
 	 */
-	
+
 	public static function addCss($file, $isD7, $v = '1') {
 		if ($isD7) {
 			// Добавляем css-файл средствами D7 bitrix
