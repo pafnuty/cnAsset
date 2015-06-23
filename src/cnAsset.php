@@ -10,6 +10,8 @@ use \Bitrix\Main\Page\Asset;
  * @version 2.2.0
  * @date 23.06.2015
  * @author Павел Белоусов <pb@infoexpert.ru>
+ * @link https://github.com/pafnuty/cnAsset
+ * @license MIT
  * ---------------------------------------
  * Использование:
  * Положить скрипт в папку /local/php_interface/
