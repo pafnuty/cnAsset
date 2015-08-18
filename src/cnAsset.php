@@ -1,24 +1,23 @@
 <?php
-use \Bitrix\Main\Page\Asset;
-
+namespace Codenails\Tools;
 /*
  * cnAsset
  *
  * Автозагрузка js и css скриптов из указанной папки в шаблон сайта,
  * через стандартные функции D7 битрикса addCss и addJs или standalone использовании
  * Сделано для облегчения работы верстальщика и программиста.
- * @version 2.2.0
- * @date 23.06.2015
- * @author Павел Белоусов <pb@infoexpert.ru>
+ * @version 2.3.0
+ * @date 18.08.2015
+ * @author Павел Белоусов <pb@info-expert.ru>
  * @link https://github.com/pafnuty/cnAsset
  * @license MIT
  * ---------------------------------------
  * Использование:
- * Положить скрипт в папку /local/php_interface/
+ * Положить скрипт в папку /local/codenails/tools/
  * Подключить в init.php:
- * 	require_once ('cnAsset.php');
+ * require_once ($_SERVER['DOCUMENT_ROOT'] . '/local/codenails/tools/cnAsset.php');
  * В нужном месте header.php шаблона сайта пишем:
- *	cnAsset::add(
+ *	\Codenails\Tools\cnAsset::add(
  *		array(
  *			// Массив с папками, из которых будем тянуть скрипты и стили.
  *          // вложенные папки не сканируются
@@ -31,13 +30,12 @@ use \Bitrix\Main\Page\Asset;
  *		)
  *	);
  * Можно ещё вот так:
- * <?cnAsset::add(array('/local/css/'))?>
+ * <?\Codenails\Tools\cnAsset::add(array('/local/css/'))?>
  */
 
 class cnAsset {
 
-	private function __construct() {
-	}
+	private function __construct() {}
 
 	/**
 	 * @param array $folders
@@ -117,7 +115,7 @@ class cnAsset {
 	public static function addCss($file, $isD7, $v = '1') {
 		if ($isD7) {
 			// Добавляем css-файл средствами D7 bitrix
-			Asset::getInstance()->addCss($file);
+			\Bitrix\Main\Page\Asset::getInstance()->addCss($file);
 		} else {
 			// Добавляем css-файл при чистой вёрстке
 			echo '<link rel="stylesheet" href="' . $file . '?v=' . $v . '" />';
@@ -134,7 +132,7 @@ class cnAsset {
 	public static function addJs($file, $isD7, $v = '1') {
 		if ($isD7) {
 			// Добавляем js-файл средствами D7 bitrix
-			Asset::getInstance()->addJs($file);
+			\Bitrix\Main\Page\Asset::getInstance()->addJs($file);
 		} else {
 			// Добавляем css-файл при чистой вёрстке
 			echo '<script src="' . $file . '?v=' . $v . '"></script>';
