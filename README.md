@@ -28,7 +28,7 @@ $APPLICATION->ShowMeta("keywords");
 $APPLICATION->ShowMeta("description");
 $APPLICATION->ShowMeta("robots");
 
-cnAsset::add(array('/local/js/', '/local/css/'), array('main'));
+\Codenails\Tools\cnAsset::add(array('/local/js/', '/local/css/'), array('main'));
 
 use \Bitrix\Main\Page\Asset;
 Asset::getInstance()->addJs('/local/js/main.js', true);
@@ -52,7 +52,7 @@ $APPLICATION->ShowHeadScripts();
 
 В нужном месте **header.php** шаблона сайта прописать:
 ```php
-cnAsset::add(
+\Codenails\Tools\cnAsset::add(
 	array(
 		// Массив с папками, из которых будем тянуть скрипты и стили.
 		// вложенные папки не сканируются.
@@ -71,8 +71,8 @@ cnAsset::add(
 
 Можно ещё вот так:
 ```php
-cnAsset::add(array('/local/css/'));
-cnAsset::add(array('/local/js/'));
+\Codenails\Tools\cnAsset::add(array('/local/css/'));
+\Codenails\Tools\cnAsset::add(array('/local/js/'));
 ```
 
 
@@ -81,6 +81,6 @@ cnAsset::add(array('/local/js/'));
 Использование без битрикса ничем не отличается от использования с битриксом. Подключаем файл и прописываем нужные параметры. 
 ```php
 require_once ('cnAsset.php');
-cnAsset::add(array('/css/'));
-cnAsset::add(array('/js/'), array('main'));
+\Codenails\Tools\cnAsset::add(array('/css/'));
+\Codenails\Tools\cnAsset::add(array('/js/'), array('main'));
 ```
